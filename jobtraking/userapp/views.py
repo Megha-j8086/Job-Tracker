@@ -27,3 +27,26 @@ def login_view(request):
             return render(request, 'login.html', {'loginError': 'Invalid credentials'})
 
     return render(request, 'login.html')
+
+def register(request):
+    if request.method == "POST":
+        username = request.POST['username']
+        email = request.POST['email']
+        password = request.POST['password']
+
+        # Check if user already exists
+        if User.objects.filter(email=email).exists():
+            return render(request, 'register.html', {
+                'error': 'Email already exists'
+            })
+
+        # Create new user
+        user = User.objects.create(
+            username=username,
+            email=email,
+            password=password
+        )
+
+        return redirect('login')  # after register go to login
+
+    return render(request, 'register.html')
