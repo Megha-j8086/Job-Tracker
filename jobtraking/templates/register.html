@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soft Light Registration Form</title>
+    <link rel="stylesheet" href="{% static 'css/register.css'%}">
+</head>
+
+<body>
+
+    <form method="post">
+        {% csrf_token %} 
+        <div class="container">
+            <h1>Sign Up</h1>
+            <div class="title-bar"></div>
+
+            <label><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" required name="username">
+
+            <label><b>Email</b></label>
+            <input type="text" placeholder="Enter Email" required name="email">
+
+            <label><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" required name="password">
+
+        
+
+            <p>Already have an account?
+                <a href="{% url 'login' %}">Login Account</a>
+            </p>
+            <!-- Sign Up Button -->
+            <button type="submit">Sign Up</button>
+
+
+        </div>
+    </form>
+
+
+</body>
+
+</html>
