@@ -50,3 +50,6 @@ def register(request):
         return redirect('login')  # after register go to login
 
     return render(request, 'register.html')
+def logout_view(request):
+    request.session.flush()   # clears session
+    return redirect('login')

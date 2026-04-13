@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Job</title>
+    <link rel="stylesheet" href="{% static 'css/addjob.css' %}">
+</head>
+<body>
+
+<div class="container">
+    <h2>Add Job</h2>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <input type="text" name="company" placeholder="Company Name" required>
+        <input type="text" name="role" placeholder="Job Role" required>
+        <input type="text" name="experience" placeholder="Experience (e.g. 2 years)" required>
+       
+
+        <button type="submit">Save Job</button>
+    </form>
+
+    <a href="{% url 'dashboard' %}" class="back-link">← Back to Dashboard</a>
+</div>
+
+</body>
+</html>
