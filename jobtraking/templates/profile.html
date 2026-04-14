@@ -1,0 +1,21 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+
+<div class="main-content">
+    <h2>My Profile</h2>
+
+    <form method="POST" class="profile-form">
+        {% csrf_token %}
+
+        <label>Username</label>
+        <input type="text" name="username" value="{{ user.username }}" required>
+
+        <label>Email</label>
+        <input type="email" name="email" value="{{ user.email }}" required>
+
+        <label>New Password (optional)</label>
+        <input type="password" name="password" placeholder="Leave blank to keep old password">
+
+        <button type="submit">Update Profile</button>
+    </form>
+</div>

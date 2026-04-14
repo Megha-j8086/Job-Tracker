@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'userapp',
     'jobsapp',
-    'dashboardapp'
+    'dashboardapp',
+    'adminapp'
 ]
 
 MIDDLEWARE = [

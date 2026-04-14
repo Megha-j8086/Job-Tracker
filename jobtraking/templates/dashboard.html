@@ -18,12 +18,12 @@
         <h2>JobTracker</h2>
 
         <ul>
-            <li><a href="#">🏠 Dashboard</a></li>
-            <li><a href="#">📄 My Applications</a></li>
-            <li><a href="{%url 'add_job'%}">➕ Add Job</a></li>
-            <li><a href="#">📊 Analytics</a></li>
-            <li><a href="#">👤 Profile</a></li>
-            <li><a href="{% url 'logout' %}">🚪 Logout</a></li>
+            <li><a href="#"> Dashboard</a></li>
+            <li><a href="{%url 'applications'%}"> My Applications</a></li>
+            <li><a href="{%url 'add_job'%}">Add Job</a></li>
+            <li><a href="{%url 'analytics'%}">Analytics</a></li>
+            <li><a href="{%url 'profile'%}">Profile</a></li>
+            <li><a href="{% url 'logout' %}"> Logout</a></li>
         </ul>
     </div>
 
@@ -37,58 +37,51 @@
         </div>
 
         <!-- Cards -->
-        <div class="cards">
-            <div class="card">
-                <h3>Total Applications</h3>
-                <p>12</p>
-            </div>
-            <div class="card">
-                <h3>Interviews</h3>
-                <p>5</p>
-            </div>
-            <div class="card">
-                <h3>Rejected</h3>
-                <p>3</p>
-            </div>
-            <div class="card">
-                <h3>Offers</h3>
-                <p>1</p>
-            </div>
-        </div>
-
+        
+           <div class="cards">
+    <div class="card">
+        <h3>Total Applications</h3>
+        <p>{{ total }}</p>
+    </div>
+    <div class="card">
+        <h3>Interviews</h3>
+        <p>{{ interviews }}</p>
+    </div>
+    <div class="card">
+        <h3>Rejected</h3>
+        <p>{{ rejected }}</p>
+    </div>
+    <div class="card">
+        <h3>Offers</h3>
+        <p>{{ offers }}</p>
+    </div>
+</div>
         <!-- Table -->
         <div class="table-section">
             <h3>Recent Applications</h3>
 
             <table>
-                <tr>
-                    <th>Company</th>
-                    <th>Role</th>
-                    <th>Status</th>
-                    <th>Date</th>
-                </tr>
+                {% for job in jobs %}
+<tr>
+    <td>{{ job.company }}</td>
+    <td>{{ job.role }}</td>
+    
+    <td class="status 
+        {% if job.status == 'Pending' %}pending
+        {% elif job.status == 'Interview' %}interview
+        {% elif job.status == 'Rejected' %}rejected
+        {% elif job.status == 'Offer' %}offer
+        {% endif %}">
+        {{ job.status }}
+    </td>
 
-                <tr>
-                    <td>Google</td>
-                    <td>Software Engineer</td>
-                    <td class="status pending">Pending</td>
-                    <td>10 Apr</td>
-                </tr>
-
-                <tr>
-                    <td>Amazon</td>
-                    <td>Backend Dev</td>
-                    <td class="status interview">Interview</td>
-                    <td>8 Apr</td>
-                </tr>
-
-                <tr>
-                    <td>Infosys</td>
-                    <td>Python Dev</td>
-                    <td class="status rejected">Rejected</td>
-                    <td>5 Apr</td>
-                </tr>
-
+    <td>{{ job.created_at|date:"d M" }}</td>
+</tr>
+{% empty %}
+<tr>
+    <td colspan="4">No applications yet</td>
+</tr>
+{% endfor %}
             </table>
         </div>
 

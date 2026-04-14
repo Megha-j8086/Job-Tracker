@@ -1,0 +1,14 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+
+<div class="main-content">
+    <h2>Analytics</h2>
+
+    <div class="cards">
+        <div class="card"><h3>Total</h3><p>{{ total }}</p></div>
+        <div class="card"><h3>Pending</h3><p>{{ pending }}</p></div>
+        <div class="card"><h3>Interview</h3><p>{{ interview }}</p></div>
+        <div class="card"><h3>Rejected</h3><p>{{ rejected }}</p></div>
+        <div class="card"><h3>Offer</h3><p>{{ offer }}</p></div>
+    </div>
+</div>
