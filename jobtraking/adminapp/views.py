@@ -21,7 +21,7 @@ def admin_login(request):
 
 def admin_dashboard(request):
     if not request.session.get('admin'):
-        return redirect('login')
+        return redirect('admin_login')
 
     total_users = User.objects.count()
     total_jobs = Job.objects.count()
@@ -30,3 +30,35 @@ def admin_dashboard(request):
         'users': total_users,
         'jobs': total_jobs
     })
+
+def manage_users(request):
+    if not request.session.get('admin'):
+        return redirect('admin_login')
+
+    users = User.objects.all()
+    return render(request, 'admin/users.html', {'users': users})
+def delete_user(request, id):
+    if not request.session.get('admin'):
+        return redirect('admin_login')
+
+    user = User.objects.get(id=id)
+    user.delete()
+    return redirect('manage_users')
+
+def manage_jobs(request):
+    if not request.session.get('admin'):
+        return redirect('admin_login')
+
+    jobs = Job.objects.all()
+    return render(request, 'admin/jobs.html', {'jobs': jobs})
+
+def delete_job(request, id):
+    if not request.session.get('admin'):
+        return redirect('admin_login')
+
+    job = Job.objects.get(id=id)
+    job.delete()
+    return redirect('manage_jobs')
+def admin_logout(request):
+    request.session.flush()
+    return redirect('admin_login')

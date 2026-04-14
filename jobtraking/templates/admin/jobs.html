@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Manage Users</title>
+    <title>Manage Jobs</title>
 
     <style>
         body {
@@ -68,23 +68,25 @@
 <div class="container">
     <a href="{% url 'admin_dashboard' %}" class="back">⬅ Back to Dashboard</a>
 
-    <h2>Manage Users</h2>
+    <h2>Manage Jobs</h2>
 
     <table>
         <tr>
             <th>ID</th>
-            <th>Username</th>
-            <th>Email</th>
+            <th>Company</th>
+            <th>Role</th>
+            <th>Experience</th>
             <th>Action</th>
         </tr>
 
-        {% for user in users %}
+        {% for job in jobs %}
         <tr>
-            <td>{{ user.id }}</td>
-            <td>{{ user.username }}</td>
-            <td>{{ user.email }}</td>
+            <td>{{ job.id }}</td>
+            <td>{{ job.company }}</td>
+            <td>{{ job.role }}</td>
+            <td>{{ job.experience }}</td>
             <td>
-                <a href="{% url 'delete_user' user.id %}" class="btn-delete">Delete</a>
+                <a href="{% url 'delete_job' job.id %}" class="btn-delete">Delete</a>
             </td>
         </tr>
         {% endfor %}
