@@ -1,0 +1,27 @@
+{% extends 'home.html' %}
+{% block content %}
+
+<div class="container py-5">
+  <h2 class="text-center mb-4">My Applications</h2>
+
+  <div class="row">
+    {% for job in jobs %}
+    <div class="col-md-4 mb-3">
+      <div class="card p-3">
+        <h5>{{ job.title }}</h5>
+        <p>{{ job.company }}</p>
+        <span class="badge bg-primary">{{ job.status }}</span>
+      </div>
+      <a href="{% url 'delete_application' job.id %}" 
+         class="btn btn-sm btn-danger"
+         >
+        Delete
+      </a>
+    </div>
+    {% empty %}
+    <p class="text-center">No applications yet.</p>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}

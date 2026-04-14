@@ -32,8 +32,8 @@
     <div class="collapse navbar-collapse" id="nav">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Jobs</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Applications</a></li>
+        <li class="nav-item"><a class="nav-link" href="{%url 'jobs'%}">Jobs</a></li>
+        <li class="nav-item"><a class="nav-link" href="{%url 'applications'%}">Applications</a></li>
   
 
         {% if request.session.user_id %}
