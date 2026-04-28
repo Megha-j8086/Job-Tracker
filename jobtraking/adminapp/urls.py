@@ -11,5 +11,5 @@ urlpatterns = [
     path('delete-job/<int:id>/', views.delete_job, name='delete_job'),
 
     path('logout/', views.admin_logout, name='admin_logout'),
-    path('addjob/', views.add_Job, name='addJob')
+    path('upload-job/', views.upload_job, name='upload_job')
 ]

@@ -67,23 +67,34 @@ def admin_logout(request):
 
 
 
-def add_Job(request):
+def upload_job(request):
     if request.method == "POST":
+
         title = request.POST.get('title')
         company = request.POST.get('company')
-        skill = request.POST.get('skill')
-        exp = request.POST.get('exp')
+        salary = request.POST.get('salary')
+        experience = request.POST.get('experience')
+        job_type = request.POST.get('job_type')
+        skills = request.POST.get('skills')
         description = request.POST.get('description')
-        
-        Job.objects.create(
+
+        if not title or not company:
+            return render(request, 'admin/admin-job.html', {
+                'error': 'Title and Company are required'
+            })
+
+        Add_Job.objects.create(
             title=title,
             company=company,
-            skill=skill,
-            exp=exp,
-            description=description,
-           
+            salary=salary,
+            experience=experience,
+            job_type=job_type,
+            skills=skills,
+            description=description
         )
 
-        return redirect('admin_dashboard')
+        return render(request, 'admin/admin-job.html', {
+            'success': 'Job posted successfully!'
+        })
 
-    return render(request, 'admin/add-job.html')
+    return render(request, 'admin/admin-job.html')

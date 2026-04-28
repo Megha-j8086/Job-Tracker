@@ -24,19 +24,16 @@ def delete_job(request, id):
     return redirect('dashboard')
 
 
-# ✅ JOB LIST WITH SEARCH (IMPORTANT)
 def jobs_list(request):
-    query = request.GET.get('q', '').strip()
+    query = request.GET.get('q', '')
 
-    jobs = Job.objects.all()
+    jobs = Job.objects.all()   # ✅ IMPORTANT: show ALL jobs
 
     if query:
         jobs = jobs.filter(
             role__icontains=query
         ) | jobs.filter(
             company__icontains=query
-        ) | jobs.filter(
-            status__icontains=query
         )
 
     jobs = jobs.distinct()

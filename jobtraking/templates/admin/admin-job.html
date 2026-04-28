@@ -7,7 +7,7 @@
 
 {% block content %}
 
-<div class="job-form-container">
+<div class="container">
 
     <h2 class="title">Upload Job</h2>
 
@@ -24,19 +24,19 @@
 
         <!-- Job Title -->
         <label>Job Title</label>
-        <input type="text" class="input-field" name="title" required>
+        <input type="text" class="input-field" name="title" required> <br><br>
 
         <!-- Company -->
         <label>Company Name</label>
-        <input type="text" class="input-field" name="company" required>
+        <input type="text" class="input-field" name="company" required> <br><br>
 
         <!-- Salary -->
         <label>Salary</label>
-        <input type="number" class="input-field" name="salary" required>
+        <input type="number" class="input-field" name="salary" required> <br><br>
 
         <!-- Experience -->
         <label>Experience (Years)</label>
-        <input type="number" class="input-field" name="experience" required>
+        <input type="number" class="input-field" name="experience" required> <br><br>
 
         <!-- Job Type -->
         <label>Job Type</label>
@@ -45,16 +45,16 @@
             <label><input type="radio" name="job_type" value="Part-Time"> Part-Time</label>
             <label><input type="radio" name="job_type" value="Internship"> Internship</label>
             <label><input type="radio" name="job_type" value="Remote"> Remote</label>
-        </div>
+        </div> <br><br>
 
         <!-- Skills -->
         <label>Required Skills</label>
         <input type="text" class="input-field" name="skills" placeholder="React, Django, Python">
-
+         <br><br>
         <!-- Description -->
         <label>Job Description</label>
         <textarea class="input-field textarea" name="description" required></textarea>
-
+         <br><br>
         <button class="submit-btn">Post Job</button>
 
     </form>

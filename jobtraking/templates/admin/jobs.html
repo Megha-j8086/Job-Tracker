@@ -76,7 +76,7 @@
             <th>Company</th>
             <th>Role</th>
             <th>Experience</th>
-            <th>Action</th>
+            <th>Salary</th>
         </tr>
 
         {% for job in jobs %}
@@ -84,7 +84,7 @@
             <td>{{ job.id }}</td>
             <td>{{ job.company }}</td>
             <td>{{ job.role }}</td>
-            <td>{{ job.experience }}</td>
+           
             <td>
                 <a href="{% url 'delete_job' job.id %}" class="btn-delete">Delete</a>
             </td>
