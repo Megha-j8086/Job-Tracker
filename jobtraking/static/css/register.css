@@ -6,10 +6,10 @@
     font-family: 'Segoe UI', sans-serif;
 }
 
-/* Body Styling */
+/* Body */
 body {
     height: 100vh;
-    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    background: linear-gradient(135deg, #ff7e5f, #feb47b);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,7 +17,7 @@ body {
 
 /* Container */
 .container {
-    background: #ffffff;
+    background: #fff;
     padding: 40px;
     width: 350px;
     border-radius: 15px;
@@ -28,15 +28,21 @@ body {
 
 /* Title */
 .container h1 {
-    margin-bottom: 10px;
     color: #333;
+}
+
+/* Error Box */
+.login-error-box {
+    font-size: 14px;
+    color: #ff4d4d;
+    margin-top: 5px;
 }
 
 /* Title Bar */
 .title-bar {
     width: 60px;
     height: 4px;
-    background: #2575fc;
+    background: #ff7e5f;
     margin: 10px auto 25px;
     border-radius: 2px;
 }
@@ -63,25 +69,24 @@ input {
 
 /* Input Focus */
 input:focus {
-    border-color: #2575fc;
-    box-shadow: 0 0 8px rgba(37, 117, 252, 0.3);
+    border-color: #ff7e5f;
+    box-shadow: 0 0 8px rgba(255, 126, 95, 0.3);
 }
 
-/* Paragraph */
-p {
-    margin: 20px 0 10px;
-    font-size: 14px;
-    color: #666;
+/* Forgot Password */
+.forgot {
+    display: block;
+    text-align: right;
+    margin-top: 8px;
+    font-size: 13px;
 }
 
-/* Links */
-p a {
-    color: #2575fc;
+.forgot a {
+    color: #ff7e5f;
     text-decoration: none;
-    font-weight: 500;
 }
 
-p a:hover {
+.forgot a:hover {
     text-decoration: underline;
 }
 
@@ -89,8 +94,9 @@ p a:hover {
 button {
     width: 100%;
     padding: 12px;
+    margin-top: 20px;
     border: none;
-    background: linear-gradient(135deg, #2575fc, #6a11cb);
+    background: linear-gradient(135deg, #ff7e5f, #feb47b);
     color: white;
     font-size: 16px;
     border-radius: 25px;
@@ -104,6 +110,23 @@ button:hover {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
+/* Bottom Text */
+p {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #666;
+}
+
+p a {
+    color: #ff7e5f;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+p a:hover {
+    text-decoration: underline;
+}
+
 /* Animation */
 @keyframes fadeIn {
     from {
@@ -115,3 +138,4 @@ button:hover {
         transform: translateY(0);
     }
 }
+

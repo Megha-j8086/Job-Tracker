@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from userapp.models import User
 from jobsapp.models import Job
+from .models import Add_Job
 # Create your views here.
 
 
@@ -62,3 +63,27 @@ def delete_job(request, id):
 def admin_logout(request):
     request.session.flush()
     return redirect('admin_login')
+
+
+
+
+def add_Job(request):
+    if request.method == "POST":
+        title = request.POST.get('title')
+        company = request.POST.get('company')
+        skill = request.POST.get('skill')
+        exp = request.POST.get('exp')
+        description = request.POST.get('description')
+        
+        Job.objects.create(
+            title=title,
+            company=company,
+            skill=skill,
+            exp=exp,
+            description=description,
+           
+        )
+
+        return redirect('admin_dashboard')
+
+    return render(request, 'admin/add-job.html')

@@ -1,36 +1,83 @@
-.profile-form {
-    max-width: 500px;
-    background: white;
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+/* Page layout */
+.profile-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
 }
 
+/* Title */
+.profile-title {
+    margin-bottom: 20px;
+    color: #1e293b;
+    font-weight: 700;
+}
+
+/* Center container */
+.profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Form Card */
+.profile-form {
+    width: 350px;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+/* Hover effect */
+.profile-form:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+/* Labels */
 .profile-form label {
     display: block;
-    margin-top: 10px;
+    margin-top: 12px;
     font-weight: 600;
+    color: #334155;
 }
 
+/* Inputs */
 .profile-form input {
     width: 100%;
     padding: 10px;
     margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    outline: none;
+    transition: 0.3s;
 }
 
+/* Input focus */
+.profile-form input:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 5px rgba(99,102,241,0.4);
+}
+
+/* Button */
 .profile-form button {
-    margin-top: 15px;
+    margin-top: 20px;
     width: 100%;
-    padding: 10px;
-    background: #4CAF50;
+    padding: 12px;
+    background: linear-gradient(135deg, #6366f1, #4f46e5);
     border: none;
     color: white;
-    border-radius: 6px;
+    border-radius: 8px;
+    font-weight: 600;
     cursor: pointer;
+    transition: 0.3s;
 }
 
+/* Button hover */
 .profile-form button:hover {
-    background: #45a049;
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(99,102,241,0.4);
 }

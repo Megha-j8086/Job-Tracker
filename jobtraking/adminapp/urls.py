@@ -8,8 +8,8 @@ urlpatterns = [
     path('users/', views.manage_users, name='manage_users'),
     path('delete-user/<int:id>/', views.delete_user, name='delete_user'),
 
-    path('jobs/', views.manage_jobs, name='manage_jobs'),
     path('delete-job/<int:id>/', views.delete_job, name='delete_job'),
 
     path('logout/', views.admin_logout, name='admin_logout'),
+    path('addjob/', views.add_Job, name='addJob')
 ]

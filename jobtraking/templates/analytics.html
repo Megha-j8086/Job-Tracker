@@ -1,14 +1,126 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
 
-<div class="main-content">
-    <h2>Analytics</h2>
+<style>
+/* Page Background */
+body {
+  background: #f1f5f9;
+  font-family: 'Segoe UI', sans-serif;
+}
 
-    <div class="cards">
-        <div class="card"><h3>Total</h3><p>{{ total }}</p></div>
-        <div class="card"><h3>Pending</h3><p>{{ pending }}</p></div>
-        <div class="card"><h3>Interview</h3><p>{{ interview }}</p></div>
-        <div class="card"><h3>Rejected</h3><p>{{ rejected }}</p></div>
-        <div class="card"><h3>Offer</h3><p>{{ offer }}</p></div>
+/* Container */
+.analytics-container {
+  padding: 30px;
+}
+
+/* Title */
+.analytics-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+/* Cards Layout */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+}
+
+/* Card Base */
+.card {
+  padding: 25px;
+  border-radius: 16px;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  transition: 0.3s;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+/* Hover Effect */
+.card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+/* Card Text */
+.card h3 {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+/* Gradient Colors */
+.total {
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
+}
+
+.pending {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+
+.interview {
+  background: linear-gradient(135deg, #0ea5e9, #0284c7);
+}
+
+.rejected {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+
+.offer {
+  background: linear-gradient(135deg, #10b981, #059669);
+}
+
+/* Small decorative circle */
+.card::after {
+  content: "";
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 50%;
+  top: -20px;
+  right: -20px;
+}
+</style>
+
+<div class="analytics-container">
+  <h2 class="analytics-title"> Analytics Overview</h2>
+
+  <div class="cards">
+
+    <div class="card total">
+      <h3>Total Applications</h3>
+      <p>{{ total }}</p>
     </div>
+
+    <div class="card pending">
+      <h3>Pending</h3>
+      <p>{{ pending }}</p>
+    </div>
+
+    <div class="card interview">
+      <h3>Interview</h3>
+      <p>{{ interview }}</p>
+    </div>
+
+    <div class="card rejected">
+      <h3>Rejected</h3>
+      <p>{{ rejected }}</p>
+    </div>
+
+    <div class="card offer">
+      <h3>Offers</h3>
+      <p>{{ offer }}</p>
+    </div>
+
+  </div>
 </div>

@@ -1,119 +1,278 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<htm lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Job Tracker</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Job Tracker</title>
 
-  <!-- Bootstrap -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-  <!-- Swiper -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+<style>
+body {
+  font-family: 'Segoe UI', sans-serif;
+}
 
-  <style>
-    body { font-family: Arial, sans-serif; }
-    .hero { height: 80vh; background: url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d') center/cover; color: white; display:flex; align-items:center; }
-    .hero h1 { font-size: 3rem; }
-    .card { border-radius: 15px; }
-  </style>
+/* HERO SECTION */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+ 
+
+background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1600') center/cover no-repeat;
+  
+}
+
+.hero-text h1 {
+  font-size: 3.2rem;
+  font-weight: bold;
+}
+
+.hero-text p {
+  font-size: 1.2rem;
+  color: #f1f1f1;
+}
+
+/* BUTTON */
+.btn-custom {
+  padding: 10px 20px;
+  border-radius: 25px;
+}
+
+/* FEATURE CARDS */
+.feature-card {
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+/* ICON STYLE */
+.icon {
+  width: 60px;
+  height: 60px;
+  margin: auto;
+  border-radius: 50%;
+  background: #fff3cd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  color: #f59e0b;
+}
+
+.feature-card p {
+  color: #666;
+}
+
+/* FOOTER */
+footer {
+  background: #111;
+  color: #fff;
+}
+</style>
 </head>
 
 <body>
 
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg bg-light">
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg bg-white shadow-sm">
   <div class="container">
-    <a class="navbar-brand" href="#">JobTracker</a>
+    <a class="navbar-brand fw-bold" href="#">JobTracker</a>
+
     <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="nav">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="{%url 'jobs'%}">Jobs</a></li>
-        <li class="nav-item"><a class="nav-link" href="{%url 'applications'%}">Applications</a></li>
-  
+      <ul class="navbar-nav ms-auto align-items-center">
 
+        <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'jobs' %}">Jobs</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
         {% if request.session.user_id %}
-        <li class="nav-item"><a class="nav-link" href="{% url 'dashboard'%}">Dashboard</a></li>
-        <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a></li>
+        <li class="nav-item">
+          <a class="btn btn-danger ms-2 btn-custom" href="{% url 'logout' %}">Logout</a>
+        </li>
         {% else %}
-        <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
-        <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">Register</a></li>
+        <li class="nav-item">
+          <a class="btn btn-outline-primary ms-2 btn-custom" href="{% url 'login' %}">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="btn btn-primary ms-2 btn-custom" href="{% url 'register' %}">Register</a>
+        </li>
         {% endif %}
+
       </ul>
     </div>
   </div>
 </nav>
 
-<!-- Hero Section -->
-<section class="hero text-center">
+<!-- HERO SECTION -->
+<section class="hero">
   <div class="container">
-    <h1>Track Your Job Applications Easily</h1>
-    <p>Organize, monitor and succeed in your job hunt</p>
-    <a href="#" class="btn btn-primary">Get Started</a>
+    <div class="row justify-content-center">
+
+      <div class="col-md-8 hero-text">
+
+        <h1 class="mb-3">Job Application Tracker</h1>
+        <h4 class="mb-4">Track & Organize Your Job Search</h4>
+
+        <p class="mb-4">
+          The smartest way to manage, track, and optimize your job applications — all in one place.
+        </p>
+
+        <div class="d-flex flex-wrap justify-content-center gap-3 mb-4">
+          <span>✔ Improve job search easily</span>
+          <span>✔ Track application stages</span>
+          <span>✔ Analyze job insights</span>
+        </div>
+
+        <a href="{% url 'register' %}" class="btn btn-warning btn-lg shadow">
+          Sign Up - It's 100% Free!
+        </a>
+
+      </div>
+
+    </div>
   </div>
 </section>
 
-<!-- Features -->
+<!-- FEATURES -->
 <section class="py-5">
   <div class="container text-center">
-    <h2 class="mb-4">Features</h2>
-    <div class="row">
+    <h2 class="mb-5 fw-bold">Powerful Features</h2>
+
+    <div class="row g-4">
+
       <div class="col-md-4">
-        <div class="card p-3">
-          <h4>Add Jobs</h4>
-          <p>Save job postings and track them</p>
+        <div class="feature-card p-4 h-100">
+          <div class="icon mb-3"><i class="fa-solid fa-briefcase"></i></div>
+          <h5 class="fw-bold">Job Management</h5>
+          <p>Organize and manage job opportunities in one place.</p>
         </div>
       </div>
+
       <div class="col-md-4">
-        <div class="card p-3">
-          <h4>Track Status</h4>
-          <p>Applied, Interview, Rejected</p>
+        <div class="feature-card p-4 h-100">
+          <div class="icon mb-3"><i class="fa-solid fa-gauge"></i></div>
+          <h5 class="fw-bold">Dashboard</h5>
+          <p>Monitor all applications from a single dashboard.</p>
         </div>
       </div>
+
       <div class="col-md-4">
-        <div class="card p-3">
-          <h4>Analytics</h4>
-          <p>Monitor your progress visually</p>
+        <div class="feature-card p-4 h-100">
+          <div class="icon mb-3"><i class="fa-solid fa-list-check"></i></div>
+          <h5 class="fw-bold">Tracking</h5>
+          <p>Track job applications by different stages.</p>
         </div>
       </div>
+
+      <div class="col-md-4">
+        <div class="feature-card p-4 h-100">
+          <div class="icon mb-3"><i class="fa-solid fa-chart-line"></i></div>
+          <h5 class="fw-bold">Analytics</h5>
+          <p>Visualize your job search progress clearly.</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="feature-card p-4 h-100">
+          <div class="icon mb-3"><i class="fa-solid fa-brain"></i></div>
+          <h5 class="fw-bold">Insights</h5>
+          <p>Understand job requirements with smart analysis.</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="feature-card p-4 h-100">
+          <div class="icon mb-3"><i class="fa-solid fa-lightbulb"></i></div>
+          <h5 class="fw-bold">Skills</h5>
+          <p>Discover key skills and keywords for success.</p>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
-
-<!-- Job Cards -->
+<!-- TRACK JOB SECTION -->
+<!-- TRACK JOB SECTION -->
 <section class="py-5 bg-light">
   <div class="container">
-    <h2 class="text-center mb-4">Recent Applications</h2>
-    <div class="row">
 
-      {% for job in jobs %}
-      <div class="col-md-4 mb-3">
-        <div class="card p-3">
-          <h5>{{ job.title }}</h5>
-          <p>{{ job.company }}</p>
-          <span class="badge bg-primary">{{ job.status }}</span>
+    <div class="text-center mb-5">
+      <h2 class="fw-bold">Track Your Job Applications</h2>
+      <p class="text-muted">
+        Manage, monitor, and improve your job search with a powerful tracking system.
+      </p>
+    </div>
+
+    <div class="row align-items-center g-5">
+
+      <!-- LEFT SIDE CONTENT -->
+      <div class="col-md-5">
+
+        <div class="p-4 bg-white rounded-4 shadow-sm">
+
+          <h4 class="fw-bold mb-3">Stay Organized & Focused</h4>
+
+          <p class="text-muted mb-4">
+            Keep all your job applications in one place. Track interview stages,
+            application status, and never miss an opportunity again.
+          </p>
+
+          <ul class="list-unstyled text-muted mb-4">
+            <li class="mb-2">✔ Track application status easily</li>
+            <li class="mb-2">✔ Monitor interview progress</li>
+            <li class="mb-2">✔ Improve job search efficiency</li>
+          </ul>
+
+          <a href="{% url 'login' %}" class="btn btn-primary btn-lg px-4 rounded-pill">
+            Track Jobs Now
+          </a>
+
         </div>
+
       </div>
-      {% endfor %}
+
+      <!-- RIGHT SIDE VISUAL -->
+      <div class="col-md-7 position-relative">
+
+        <!-- MAIN IMAGE -->
+        <img 
+          src="{% static 'images/dashboard-img.png' %}" 
+          class="img-fluid rounded-4 shadow"
+          alt="Dashboard"
+        >
+
+        <!-- OVERLAY IMAGE -->
+        <img 
+          src="{% static 'images/analytics.png' %}" 
+          class="position-absolute rounded-4 shadow"
+          style="width: 45%; bottom: -30px; right: -20px; border: 5px solid white;"
+          alt="Analytics"
+        >
+
+      </div>
 
     </div>
+
   </div>
 </section>
-
-<!-- Newsletter -->
-<section class="bg-dark text-white text-center py-5">
-  <div class="container">
-    <h3>Stay Updated</h3>
-    <p>Get job alerts directly to your email</p>
-    <input type="email" class="form-control w-50 mx-auto" placeholder="Enter email">
-  </div>
-</section>
-
-<!-- Footer -->
+<!-- FOOTER -->
 <footer class="text-center py-4">
   <p>© 2026 JobTracker</p>
 </footer>

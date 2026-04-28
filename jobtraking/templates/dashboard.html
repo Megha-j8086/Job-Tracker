@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,13 +19,13 @@
         <h2>JobTracker</h2>
 
         <ul>
-             <li><a href="{% url 'home' %}">Home</a></li>
-            <li><a href="#"> Dashboard</a></li>  
-            <li><a href="{%url 'applications'%}"> My Applications</a></li>
-            <li><a href="{%url 'add_job'%}">Add Job</a></li>
-            <li><a href="{%url 'analytics'%}">Analytics</a></li>
-            <li><a href="{%url 'profile'%}">Profile</a></li>
-            <li><a href="{% url 'logout' %}"> Logout</a></li>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="{% url 'applications' %}">My Applications</a></li>
+            <li><a href="{% url 'add_job' %}">Add Job</a></li>
+            <li><a href="{% url 'analytics' %}">Analytics</a></li>
+            <li><a href="{% url 'profile' %}">Profile</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
         </ul>
     </div>
 
@@ -33,58 +34,78 @@
 
         <!-- Topbar -->
         <div class="topbar">
+
             <h2>Dashboard</h2>
+
+           
+
             <span>Welcome, {{ request.session.username }}</span>
+
         </div>
 
-        <!-- Cards -->
-        
-           <div class="cards">
-    <div class="card">
-        <h3>Total Applications</h3>
-        <p>{{ total }}</p>
-    </div>
-    <div class="card">
-        <h3>Interviews</h3>
-        <p>{{ interviews }}</p>
-    </div>
-    <div class="card">
-        <h3>Rejected</h3>
-        <p>{{ rejected }}</p>
-    </div>
-    <div class="card">
-        <h3>Offers</h3>
-        <p>{{ offers }}</p>
-    </div>
+        <!-- CARDS -->
+        <div class="cards">
+            <div class="card card1">
+                <h3>Total Applications</h3>
+                <p>{{ total }}</p>
+            </div>
+
+            <div class="card card2">
+                <h3>Interviews</h3>
+                <p>{{ interviews }}</p>
+            </div>
+
+            <div class="card card3">
+                <h3>Rejected</h3>
+                <p>{{ rejected }}</p>
+            </div>
+
+            <div class="card card4">
+                <h3>Offers</h3>
+                <p>{{ offers }}</p>
+            </div>
+        </div>
+
+        <!-- TABLE -->
+       <div class="table-section">
+    <h3>Recent Applications</h3>
+
+    {% if jobs %}
+    <table>
+        <tr>
+            <th>Company</th>
+            <th>Role</th>
+            <th>Status</th>
+            <th>Date</th>
+        </tr>
+
+        {% for job in jobs %}
+        <tr>
+            <td>{{ job.company }}</td>
+            <td>{{ job.role }}</td>
+
+            <td class="status 
+                {% if job.status == 'Pending' %}pending
+                {% elif job.status == 'Interview' %}interview
+                {% elif job.status == 'Offer' %}offer
+                {% elif job.status == 'Rejected' %}rejected
+                {% endif %}">
+                {{ job.status }}
+            </td>
+
+            <td>{{ job.created_at|date:"d M" }}</td>
+        </tr>
+        {% endfor %}
+
+    </table>
+
+    {% else %}
+        <div style="text-align:center; padding:20px; color:gray;">
+            No jobs found for "<b>{{ query }}</b>"
+        </div>
+    {% endif %}
+
 </div>
-        <!-- Table -->
-        <div class="table-section">
-            <h3>Recent Applications</h3>
-
-            <table>
-                {% for job in jobs %}
-<tr>
-    <td>{{ job.company }}</td>
-    <td>{{ job.role }}</td>
-    
-    <td class="status 
-        {% if job.status == 'Pending' %}pending
-        {% elif job.status == 'Interview' %}interview
-        {% elif job.status == 'Rejected' %}rejected
-        {% elif job.status == 'Offer' %}offer
-        {% endif %}">
-        {{ job.status }}
-    </td>
-
-    <td>{{ job.created_at|date:"d M" }}</td>
-</tr>
-{% empty %}
-<tr>
-    <td colspan="4">No applications yet</td>
-</tr>
-{% endfor %}
-            </table>
-        </div>
 
     </div>
 </div>

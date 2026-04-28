@@ -1,75 +1,137 @@
-
 {% block content %}
 
 <style>
   body {
-    background-color: #f5f7fa;
+    background: linear-gradient(135deg, #eef2f7, #e3e9f0);
+    font-family: 'Segoe UI', sans-serif;
   }
 
   .jobs-title {
-    font-weight: bold;
-    color: #333;
+    font-weight: 700;
+    color: #1e293b;
   }
 
-  .job-card {
+  .search-box {
+    max-width: 500px;
+    margin: 0 auto 30px auto;
+    display: flex;
+    gap: 10px;
+  }
+
+  .search-box input {
+    flex: 1;
+    padding: 10px 15px;
+    border-radius: 25px;
+    border: 1px solid #ccc;
+    outline: none;
+  }
+
+  .search-box button {
+    padding: 10px 20px;
+    border-radius: 25px;
     border: none;
-    border-radius: 15px;
-    transition: 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    background: #6366f1;
+    color: white;
+  }
+
+  /* Card Design */
+  .job-card {
+    border-radius: 16px;
+    padding: 25px;
+    background: white;
+    border: 1px solid #e5e7eb;
+    transition: all 0.3s ease;
   }
 
   .job-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    transform: translateY(-6px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.08);
   }
 
   .job-title {
+    font-size: 18px;
     font-weight: 600;
-    color: #2c3e50;
   }
 
   .company-name {
-    color: #7f8c8d;
-    font-size: 14px;
+    font-size: 18px;
+    color: black;
   }
 
   .badge-custom {
-    background: linear-gradient(45deg, #28a745, #20c997);
-    padding: 6px 12px;
+    background: #e0f2fe;
+    color: #0284c7;
     font-size: 12px;
-    border-radius: 20px;
+    padding: 10px 12px;
+    border-radius: 999px;
   }
 
   .apply-btn {
-    border-radius: 20px;
-    font-size: 14px;
-    padding: 5px 15px;
+    border-radius: 999px;
+    font-size: 13px;
+    padding: 10px 16px;
+    background: #6366f1;
+    color: white;
+    border: none;
+  }
+
+  .no-jobs {
+    text-align: center;
+    margin-top: 40px;
+    color: #6b7280;
+    font-size: 18px;
   }
 </style>
 
 <div class="container py-5">
-  <h2 class="text-center mb-4 jobs-title">All Jobs</h2>
+
+  <h2 class="text-center mb-3 jobs-title">Explore Opportunities</h2>
+
+  <!-- 🔍 SEARCH BAR -->
+  <form method="GET" class="search-box">
+    <input 
+      type="text" 
+      name="q" 
+      placeholder="Search jobs (title or company...)"
+      value="{{ request.GET.q }}"
+    >
+    <button type="submit">Search</button>
+  </form>
 
   <div class="row">
-    {% for job in jobs %}
-    <div class="col-md-4 mb-4">
-      <div class="card p-4 job-card">
-        
-        <h5 class="job-title">{{ job.title }}</h5>
-        <p class="company-name">{{ job.company }}</p>
 
-        <div class="d-flex justify-content-between align-items-center mt-3">
-          <span class="badge badge-custom">Available</span>
+    {% if jobs %}
 
-          <a href="{% url 'apply_job' job.id %}" class="btn btn-sm btn-primary apply-btn">
-            Apply
-          </a>
+      {% for job in jobs %}
+      <div class="col-md-4 mb-4">
+        <div class="job-card">
+
+          <h5 class="job-title">{{ job.role }}</h5>
+          <p class="company-name">{{ job.company }}</p>
+
+          <div class="d-flex justify-content-between align-items-center mt-4">
+            <span class="badge-custom">Hiring</span>
+
+            <a href="{% url 'apply_job' job.id %}" class="btn apply-btn">
+              Apply →
+            </a>
+          </div>
+
         </div>
-
       </div>
-    </div>
-    {% endfor %}
+      {% endfor %}
+
+    {% else %}
+
+      <!-- ❌ NO JOBS FOUND -->
+      <div class="no-jobs">
+        No jobs found 😕
+      </div>
+
+    {% endif %}
+
   </div>
+
 </div>
 
 {% endblock %}

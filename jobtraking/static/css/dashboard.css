@@ -1,34 +1,29 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', sans-serif;
-}
-
 body {
-    background: #f4f6f9;
+    margin: 0;
+    font-family: Arial, sans-serif;
 }
 
-/* Layout */
 .dashboard {
     display: flex;
 }
 
-/* Sidebar */
+/* SIDEBAR */
 .sidebar {
     width: 220px;
-    height: 100vh;
-    background: #1e293b;
+    background: #111827;
     color: white;
+    min-height: 100vh;
     padding: 20px;
 }
 
 .sidebar h2 {
+    text-align: center;
     margin-bottom: 30px;
 }
 
 .sidebar ul {
     list-style: none;
+    padding: 0;
 }
 
 .sidebar ul li {
@@ -36,33 +31,56 @@ body {
 }
 
 .sidebar ul li a {
-    color: #cbd5e1;
-    text-decoration: none;
-    transition: 0.3s;
-}
-
-.sidebar ul li a:hover {
     color: white;
+    text-decoration: none;
 }
 
-/* Main */
+/* MAIN */
 .main-content {
     flex: 1;
     padding: 20px;
+    background: #f3f4f6;
 }
 
-/* Topbar */
+/* TOPBAR */
 .topbar {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
     margin-bottom: 20px;
 }
 
-/* Cards */
+/* SEARCH */
+.search-box {
+    display: flex;
+    gap: 8px;
+}
+
+.search-box input {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    width: 250px;
+    outline: none;
+}
+
+.search-box button {
+    padding: 8px 15px;
+    border: none;
+    background: #4f46e5;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+/* CARDS */
 .cards {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 15px;
+    margin-bottom: 20px;
 }
 
 .card {
@@ -70,59 +88,28 @@ body {
     padding: 20px;
     border-radius: 10px;
     text-align: center;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
 }
 
-.card h3 {
-    margin-bottom: 10px;
-    color: #555;
-}
-
-.card p {
-    font-size: 24px;
-    font-weight: bold;
-}
-
-/* Table */
+/* TABLE */
 .table-section {
-    margin-top: 30px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    background: white;
-    margin-top: 10px;
-    border-radius: 10px;
-    overflow: hidden;
 }
 
 table th, table td {
-    padding: 12px;
-    text-align: left;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
 }
 
-table th {
-    background: #1e293b;
-    color: white;
-}
-
-table tr:nth-child(even) {
-    background: #f9fafb;
-}
-
-/* Status Colors */
-.status.pending {
-    color: orange;
-    font-weight: bold;
-}
-
-.status.interview {
-    color: blue;
-    font-weight: bold;
-}
-
-.status.rejected {
-    color: red;
-    font-weight: bold;
-}
+/* STATUS COLORS */
+.pending { color: orange; }
+.interview { color: blue; }
+.offer { color: green; }
+.rejected { color: red; }

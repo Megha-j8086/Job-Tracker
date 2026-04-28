@@ -1,0 +1,64 @@
+{% extends 'admin/admin-dashboard.html' %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/admin-uploadJob.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="job-form-container">
+
+    <h2 class="title">Upload Job</h2>
+
+    {% if success %}
+        <p class="success-msg">{{ success }}</p>
+    {% endif %}
+
+    {% if error %}
+        <p class="error-msg">{{ error }}</p>
+    {% endif %}
+
+    <form class="product-form" method="post">
+        {% csrf_token %}
+
+        <!-- Job Title -->
+        <label>Job Title</label>
+        <input type="text" class="input-field" name="title" required>
+
+        <!-- Company -->
+        <label>Company Name</label>
+        <input type="text" class="input-field" name="company" required>
+
+        <!-- Salary -->
+        <label>Salary</label>
+        <input type="number" class="input-field" name="salary" required>
+
+        <!-- Experience -->
+        <label>Experience (Years)</label>
+        <input type="number" class="input-field" name="experience" required>
+
+        <!-- Job Type -->
+        <label>Job Type</label>
+        <div class="radio-group">
+            <label><input type="radio" name="job_type" value="Full-Time"> Full-Time</label>
+            <label><input type="radio" name="job_type" value="Part-Time"> Part-Time</label>
+            <label><input type="radio" name="job_type" value="Internship"> Internship</label>
+            <label><input type="radio" name="job_type" value="Remote"> Remote</label>
+        </div>
+
+        <!-- Skills -->
+        <label>Required Skills</label>
+        <input type="text" class="input-field" name="skills" placeholder="React, Django, Python">
+
+        <!-- Description -->
+        <label>Job Description</label>
+        <textarea class="input-field textarea" name="description" required></textarea>
+
+        <button class="submit-btn">Post Job</button>
+
+    </form>
+
+</div>
+
+{% endblock %}
